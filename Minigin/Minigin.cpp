@@ -16,7 +16,7 @@
 #include "PointsPickup.h"
 #include "Scene.h"
 #include "MessageCommand.h"
-//#include <steam_api.h>
+#include <steam_api.h>
 
 using namespace std;
 
@@ -175,7 +175,7 @@ void dae::Minigin::GameLoop()
 		sceneManager.Update(deltaTime);
 		renderer.Render();
 
-	//	SteamAPI_RunCallbacks();
+		SteamAPI_RunCallbacks();
 		const auto sleepTime = currentTime + std::chrono::milliseconds(MsPerFrame) - std::chrono::high_resolution_clock::now();
 		std::this_thread::sleep_for(sleepTime);
 	}
