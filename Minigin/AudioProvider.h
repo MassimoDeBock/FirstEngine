@@ -5,6 +5,7 @@ namespace dae {
     class AudioProvider :
         public Audio_API
     {
+    public:
         virtual void PlaySound(int soundID);
         virtual void StopSound(int soundID);
         virtual void StopAllSounds();
