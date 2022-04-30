@@ -264,6 +264,7 @@ xcopy $(SolutionDir)3rdParty\steamworks\redistributable_bin\win64*.dll $(OutputP
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameScoreBoardComponent.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="Locator.cpp" />
     <ClCompile Include="LoggedAudioProvider.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MessageCommand.cpp" />

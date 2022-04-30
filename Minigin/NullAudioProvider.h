@@ -5,8 +5,8 @@ namespace dae {
 	class NullAudioProvider :
 		public Audio_API
 	{
-		virtual void PlaySound(int soundID) {};
-		virtual void StopSound(int soundID) {};
+		virtual void PlaySound(int soundID) { soundID; };
+		virtual void StopSound(int soundID) { soundID; };
 		virtual void StopAllSounds() {};
 	};
 

@@ -17,6 +17,9 @@
 #include "Scene.h"
 #include "MessageCommand.h"
 #include <steam_api.h>
+#include "Locator.h"
+#include "AudioProvider.h"
+#include "LoggedAudioProvider.h"
 
 using namespace std;
 
@@ -56,6 +59,7 @@ void dae::Minigin::Initialize()
 	}
 
 	Renderer::GetInstance().Init(m_Window);
+	Locator::Initialize();
 }
 
 /**
@@ -64,6 +68,12 @@ void dae::Minigin::Initialize()
 void dae::Minigin::LoadGame() const
 {
 	auto& scene = SceneManager::GetInstance().CreateScene("Demo");
+
+	Audio_API* service = new LoggedAudioProvider(Locator::GetAudio());
+
+	Locator::Provide(service);
+
+
 
 	auto go = std::make_shared<GameObject>();
 	scene.Add("Background", go);
