@@ -243,6 +243,7 @@ xcopy $(SolutionDir)3rdParty\steamworks\redistributable_bin\win64*.dll $(OutputP
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="SoundEvent.h" />
     <ClInclude Include="Subject.h" />
     <ClInclude Include="Tags.h" />
     <ClInclude Include="TextComponent.h" />

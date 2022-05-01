@@ -10,9 +10,11 @@ namespace dae {
 		virtual void PlaySound(int soundID);
 		virtual void StopSound(int soundID);
 		virtual void StopAllSounds();
+		virtual void LoadSound(int soundID, const std::string& path);
 
 	private:
 		void Log(const char* message);
+		void Log(const std::string message);
 		
 		Audio_API &m_Wrapped;
 	};

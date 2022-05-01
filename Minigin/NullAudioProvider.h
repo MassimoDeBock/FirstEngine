@@ -8,6 +8,7 @@ namespace dae {
 		virtual void PlaySound(int soundID) { soundID; };
 		virtual void StopSound(int soundID) { soundID; };
 		virtual void StopAllSounds() {};
+		virtual void LoadSound(int soundID, const std::string& path) { soundID; path; };
 	};
 
 }

@@ -5,6 +5,8 @@
 #include "GameObject.h"
 #include "TextureComponent.h"
 #include "RectColliderComponent.h"
+#include "Locator.h"
+#include "AudioProvider.h"
 
 dae::PeterPepperBrainComponent::PeterPepperBrainComponent(const int playerID)
 	: m_PlayerID(playerID)
@@ -77,5 +79,6 @@ void dae::PeterPepperBrainComponent::Hits(const GameObject& gameObject)
 
 void dae::PeterPepperBrainComponent::Dies()
 {
+	Locator::GetAudio().PlaySound(1);
 	m_GameObjectRef->SetAbsoluteTransform(Transform(m_SpawnLocation.x, m_SpawnLocation.y));
 }

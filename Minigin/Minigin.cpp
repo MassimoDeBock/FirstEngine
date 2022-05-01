@@ -21,6 +21,8 @@
 #include "AudioProvider.h"
 #include "LoggedAudioProvider.h"
 
+#include <SDL_mixer.h>
+
 using namespace std;
 
 void PrintSDLVersion()
@@ -60,6 +62,7 @@ void dae::Minigin::Initialize()
 
 	Renderer::GetInstance().Init(m_Window);
 	Locator::Initialize();
+	Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 8, 4096);
 }
 
 /**
@@ -69,10 +72,16 @@ void dae::Minigin::LoadGame() const
 {
 	auto& scene = SceneManager::GetInstance().CreateScene("Demo");
 
-	Audio_API* service = new LoggedAudioProvider(Locator::GetAudio());
+	{
+		Audio_API* service = new AudioProvider();
+		Locator::Provide(service);
+	}
+	{
+		Audio_API* service = new LoggedAudioProvider(Locator::GetAudio()); //log audio
+		Locator::Provide(service);
+	}
 
-	Locator::Provide(service);
-
+	Locator::GetAudio().LoadSound(1, "../Data/04_Lose_Life.mp3");
 
 
 	auto go = std::make_shared<GameObject>();
@@ -185,7 +194,7 @@ void dae::Minigin::GameLoop()
 		sceneManager.Update(deltaTime);
 		renderer.Render();
 
-		SteamAPI_RunCallbacks();
+		//SteamAPI_RunCallbacks();
 		const auto sleepTime = currentTime + std::chrono::milliseconds(MsPerFrame) - std::chrono::high_resolution_clock::now();
 		std::this_thread::sleep_for(sleepTime);
 	}
