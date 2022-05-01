@@ -22,3 +22,5 @@ namespace dae {
         void SignalThread();
     };
 }
+
+//doesn't support music yet

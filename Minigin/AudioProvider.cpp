@@ -45,7 +45,7 @@ void dae::AudioProvider::PlaySound(int soundID)
 
 	SignalThread();
 	//Mix_GroupChannel(Mix_PlayChannel(-1, pimpl->m_Sounds.find(soundID)->second, 0), soundID);
-	std::cout << pimpl->m_SoundQueue.size() << std::endl;
+	
 }
 
 void dae::AudioProvider::StopSound(int soundID)
@@ -85,9 +85,7 @@ void dae::AudioProvider::ProcessQueue()
 
 	for (; true;) {
 		std::unique_lock lk(pimpl->m);
-		std::cout << (pimpl->m_SoundQueue.size() > 0) << std::endl;
 		pimpl->cv.wait(lk, [&] {return pimpl->m_SoundQueue.size() > 0; });
-		std::cout << "loop" << std::endl;
 		pimpl->frontMutex.lock();
 		auto front = pimpl->m_SoundQueue.front();
 		switch (front.m_SoundEvent)
@@ -123,5 +121,4 @@ void dae::AudioProvider::ProcessQueue()
 void dae::AudioProvider::SignalThread()
 {
 	pimpl->cv.notify_all();
-	std::cout << "signall all" << std::endl;
 }
